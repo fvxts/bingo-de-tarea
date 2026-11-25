@@ -1,0 +1,95 @@
+:root {
+  --fondo: #080c16;
+  --panel: #111827;
+  --linea: #1e293b;
+  --oro: #fbbf24;
+  --verde: #10b981;
+  --texto: #e2e8f0;
+  --gris: #94a3b8;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; margin: 0; }
+body { background: var(--fondo); color: var(--texto); font-family: "Segoe UI", system-ui, sans-serif; }
+button { font: inherit; color: inherit; cursor: pointer; }
+.contenedor { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.oculto { display: none !important; }
+
+/* Título y score: se van con el scroll. Solo la barra se queda fija */
+.fila-titulo { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-top: 20px; padding-bottom: 12px; }
+.etiqueta { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--oro); }
+h1 { font-size: 28px; }
+.score { display: flex; gap: 20px; background: var(--panel); border: 1px solid var(--linea); border-radius: 14px; padding: 8px 16px; }
+.score small { display: block; font-size: 10px; text-transform: uppercase; color: var(--gris); }
+#score { font-size: 28px; color: var(--oro); }
+#lineas { font-size: 18px; color: var(--verde); }
+#proximo { font-size: 12px; color: var(--gris); padding-bottom: 10px; }
+#cabecera { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; padding: 12px 0; background: #0b1120; border-bottom: 1px solid var(--linea); }
+
+/* Barra horizontal con los hitos */
+.barra { position: relative; height: 12px; background: var(--linea); border-radius: 6px; }
+#barra-h { height: 100%; width: 0; border-radius: 6px; background: linear-gradient(90deg, var(--verde), var(--oro)); transition: width .5s; }
+#hitos span {
+  position: absolute; top: 50%;
+  width: 16px; height: 16px; margin: -8px 0 0 -8px;
+  border-radius: 50%; background: var(--panel); border: 2px solid #64748b;
+}
+#hitos span.logrado { background: var(--verde); border-color: var(--fondo); }
+#etiquetas { position: relative; height: 50px; margin-top: 4px; font-size: 10px; color: var(--gris); }
+#etiquetas span { position: absolute; width: 90px; margin-left: -45px; text-align: center; }
+#etiquetas b { color: var(--texto); }
+
+/* Cuerpo */
+main { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; align-items: start; padding-top: 24px; padding-bottom: 32px; }
+.cartilla, .panel { min-width: 0; background: var(--panel); border: 1px solid var(--linea); border-radius: 24px; padding: 24px; }
+.cartilla-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.cartilla-top p, .leyenda { font-size: 12px; color: var(--gris); }
+.leyenda { margin-top: 20px; }
+#btn-editar, .demo button { padding: 8px 12px; border-radius: 12px; border: 1px solid #334155; background: var(--linea); font-size: 12px; font-weight: 600; }
+
+.letras, #tablero { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.letras span { text-align: center; font-size: 20px; font-weight: 800; background: #0f172a; border-radius: 14px; padding: 6px 0; }
+.letras span:nth-child(3) { color: var(--oro); }
+#tablero { place-items: center; margin-top: 12px; }
+
+.celda {
+  width: 100%; max-width: 110px; aspect-ratio: 1; padding: 8px;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  border-radius: 50%; border: 2px solid #334155; background: var(--linea);
+  color: #cbd5e1; font-size: 12px; line-height: 1.2;
+  cursor: pointer; transition: transform .2s;
+}
+.celda:hover { transform: scale(1.05); }
+.celda.hecha { background: linear-gradient(135deg, #10b981, #059669); border-color: #34d399; color: #fff; }
+.celda.linea { background: linear-gradient(135deg, #fbbf24, #f59e0b); border-color: #fde68a; color: #080c16; font-weight: 700; }
+.editando .celda { border-style: dashed; border-color: var(--oro); cursor: text; }
+
+/* Panel lateral */
+.panel h3 { display: flex; justify-content: space-between; margin-bottom: 16px; }
+#porcentaje { font-size: 13px; color: var(--oro); }
+.panel-medio { display: flex; gap: 16px; }
+.tubo { width: 36px; height: 240px; padding: 4px; display: flex; align-items: flex-end; background: var(--linea); border-radius: 18px; }
+#barra-v { width: 100%; height: 0; border-radius: 14px; background: linear-gradient(0deg, var(--verde), var(--oro)); transition: height .5s; }
+#lista-hitos { flex: 1; list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+#lista-hitos li { padding: 8px; font-size: 12px; border: 1px solid var(--linea); border-radius: 12px; opacity: .7; }
+#lista-hitos li.logrado { border-color: #10b98166; background: #022c2244; opacity: 1; }
+#lista-hitos b { display: block; font-size: 10px; color: var(--gris); }
+.demo { display: flex; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--linea); }
+.demo button { flex: 1; }
+#reiniciar { color: #fda4af; }
+
+/* Ventana de felicitación */
+#modal { position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; justify-content: center; padding: 16px; background: #000c; }
+.caja { width: 100%; max-width: 420px; padding: 32px; text-align: center; background: var(--panel); border: 1px solid #334155; border-radius: 24px; }
+.caja.grande { max-width: 560px; border: 2px solid var(--oro); box-shadow: 0 0 60px #f59e0b55; }
+.caja h2 { margin-bottom: 8px; }
+.caja.grande h2 { color: var(--oro); font-size: 28px; }
+.caja p { margin-bottom: 20px; color: var(--gris); }
+.caja button { width: 100%; padding: 12px; border: 0; border-radius: 14px; background: var(--oro); color: #080c16; font-weight: 800; }
+
+@media (max-width: 900px) {
+  main { grid-template-columns: 1fr; }
+  #etiquetas { display: none; }
+  #tablero, .letras { gap: 6px; }
+  .celda { padding: 4px; font-size: 10px; }
+}

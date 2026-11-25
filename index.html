@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bingo de Tareas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="contenedor fila-titulo">
+    <div>
+      <span class="etiqueta">Gamificación académica</span>
+      <h1>BINGO DE TAREAS</h1>
+    </div>
+    <div class="score">
+      <div><small>Score general</small><b id="score">0</b> <span>/ 100 pts</span></div>
+      <div><small>Líneas bingo</small><b id="lineas">0 / 12</b></div>
+    </div>
+  </div>
+  <p id="proximo" class="contenedor"></p>
+
+  <!-- esta barra se queda fija arriba al hacer scroll -->
+  <div id="cabecera">
+    <div class="contenedor">
+      <div class="barra">
+        <div id="barra-h"></div>
+        <div id="hitos"></div>
+      </div>
+    </div>
+  </div>
+  <div class="contenedor"><div id="etiquetas"></div></div>
+
+  <main class="contenedor">
+    <section class="cartilla">
+      <div class="cartilla-top">
+        <div>
+          <h2>Cartilla de tareas 5×5</h2>
+          <p>Marca cada círculo al completar tu tarea. Una línea de 5 suma +1 punto.</p>
+        </div>
+        <button id="btn-editar">Editar tareas</button>
+      </div>
+
+      <div class="letras"><span>B</span><span>I</span><span>N</span><span>G</span><span>O</span></div>
+      <div id="tablero"></div>
+
+      <p class="leyenda">Gris: pendiente · Verde: tarea hecha · Dorado: línea de 5 completada (+1 punto)</p>
+    </section>
+
+    <aside class="panel">
+      <h3>Puntos acumulados <span id="porcentaje">0%</span></h3>
+      <div class="panel-medio">
+        <div class="tubo"><div id="barra-v"></div></div>
+        <ul id="lista-hitos"></ul>
+      </div>
+      <div class="demo">
+        <button id="mas5">+5 pts</button>
+        <button id="mas15">+15 pts</button>
+        <button id="reiniciar">Reiniciar</button>
+      </div>
+    </aside>
+  </main>
+
+  <div id="modal" class="oculto">
+    <div id="caja" class="caja">
+      <h2 id="m-titulo"></h2>
+      <p id="m-texto"></p>
+      <button id="m-cerrar">Continuar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
